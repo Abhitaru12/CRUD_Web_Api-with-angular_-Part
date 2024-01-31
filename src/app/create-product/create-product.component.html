@@ -1,0 +1,26 @@
+<div class="container">
+    <h3>Create Products</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <form #productForm="ngForm" >
+          <div class="mb-3" [class.has-error]="pName.invalid">
+            <label for="productName" class="control-label">Product Name</label>
+            <input type="text" class="form-control" required id="productName" [(ngModel)]="product.productName" name="productName" #pName="ngModel">
+            <span class="help-block" *ngIf="pName.invalid && pName.touched" style="color: red;"> Product Name is Required </span>
+          </div>
+
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" required class="form-control" id="price" [(ngModel)]="product.price" name="price" placeholder=" Qty Should Be > 1 & < 40">
+          </div>
+          <div class="mb-3">
+            <label for="qty" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="qty" [(ngModel)]="product.qty" name="qty" required>
+          </div>
+          <button class="btn btn-primary" (click)="createProduct()" [disabled]="productForm.invalid">Create Product</button>
+          <div *ngIf="errorMessage" style="color: red;">{{errorMessage}}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
